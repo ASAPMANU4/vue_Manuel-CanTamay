@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Propietarios</title>
+	<script type="text/javascript" src="vue.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body class="container">
+	<div id="miPagina2">
+		<br><br>
+		<div>
+			<h3 class="text-center">Propietarios</h3>
+		</div>
+
+		<div class="rel">
+			<div class="col-md-4">
+				<h4>datos</h4>
+				<input type="text" placeholder="Nombre" form="form-control" v-model="nombre">
+			</div>
+			<div class="col-md-4">
+				<input type="text" placeholder="primer apellido" form="form-control" v-model="primerApellido">
+			</div>
+			<div class="col-md-4">
+				<input type="text" placeholder="segundo apellido" form="form-control" v-model="segundoApellido">
+			</div>
+			<div class="col-md-4">
+				<input type="number" placeholder="edad" form="form-control" v-model="edad" v-on:keyup.enter="agregarPropietario()">
+			</div>
+
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-8">
+				<button class="btn btn-primary" @click="agregarPropietario()" v-if="editando==0">Guardar</button>
+				<button class="btn btn-primary" @click="guardarEdicion()" v-if="editando==1">Actualizar</button>
+			</div>
+				<div>
+				<button class="btn btn-danger" @click="cancelar()">Cancelar</button>
+			</div>
+		</div>
+			<div class="row">
+		<div class="col-md-4">
+			<input type="text" class="form-control" placeholder="Escriba el nombre del propietario" v-model="buscar">
+		</div> 
+	</div>
+
+			<table class="table table-borderd">
+				<thead>
+					<th>Nombre</th>
+					<th>Primer apellido</th>
+					<th>Segundo apellido</th>
+					<th>Edad</th>
+					<th>Acciones</th>
+				</thead>
+				<tbody>
+					<tr v-for="(p,indice) in filtroPropietarios">
+					<td>{{p.nombre}}</td>
+					<td>{{p.primerApellido}}</td>
+					<td>{{p.segundoApellido}}</td>
+					<td>{{p.edad}}</td>
+					<td>
+						<button class="btn btn-primary" @click="editarPropietario(indice)">Editar</button>
+						<button class="btn btn-danger" @click="eliminarPropietario(indice)">Eliminar</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+	
+
+		
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="propietarios.js"></script>
+	<script type="text/javascript" src="sweetalert2.all.min.js"></script>
+</body>
+</html>
